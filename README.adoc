@@ -17,9 +17,13 @@
 Send some text to your R, ruby, elixir (probably many others too) interpreters
 opened in a vim terminal.
 
+.R example
+video::https://i.imgur.com/s9ZlfYu.mp4[width=640]
+
 NOTE: Vim 8+ only.
 
-image::img_README_1.png[]
+// image::img_README_1.png[]
+
 
 == Installation
 === minpac
