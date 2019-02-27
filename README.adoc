@@ -14,6 +14,9 @@
 :doctype: article
 
 
+Send some text to your R, ruby, elixir (probably many others too) interpreters
+opened in a vim terminal.
+
 NOTE: Vim 8+ only.
 
 image::img_README_1.png[]
