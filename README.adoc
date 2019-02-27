@@ -28,7 +28,7 @@ call minpac#init()
 " ...
 " more plugins
 " ...
-call minpac#add('habamax/vim-sendtoterminal')
+call minpac#add('habamax/vim-sendtoterm')
 ------------
 
 Then `:call minpac#update()` to install it.
@@ -41,7 +41,7 @@ call plug#begin('~/.vim/plugged')
 " ...
 " more plugins
 " ...
-Plug 'habamax/vim-sendtoterminal'
+Plug 'habamax/vim-sendtoterm'
 
 call plug#end()
 ------------
