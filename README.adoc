@@ -18,12 +18,12 @@ Send some text to your R, ruby, elixir (probably many others too) interpreters
 opened in a vim terminal.
 
 .R example
-video::https://i.imgur.com/s9ZlfYu.mp4[width=640]
+image::img_README_1.png[]
+
+.R example in action
+image::https://github.com/habamax/habamax.github.io/blob/master/assets/gifs/vim-sendtoterm.gif[Send to term anigif]
 
 NOTE: Vim 8+ only.
-
-// image::img_README_1.png[]
-
 
 == Installation
 === minpac
