@@ -40,7 +40,7 @@ fu! SendToTerm(...)
 	let &selection = sel_save
 	let @@ = reg_save
 	let &clipboard = clipboard_save
-endfunction
+endfu
 
 xnoremap <expr> <Plug>(SendToTerm)     SendToTerm()
 nnoremap <expr> <Plug>(SendToTerm)     SendToTerm()
