@@ -34,7 +34,7 @@ fu! SendToTerm(...)
 	endif
 
 	let text = substitute(@", '\n\|$', '\r', "g")
-	if !&expandtab && g:sendtoterm_tab2space
+	if !&expandtab && g:sendtoterm_expandtab
 		let text = substitute(text, '\t', repeat(' ', shiftwidth()), "g")
 	endif
 	call term_sendkeys(term_buffer+0, text)
@@ -48,8 +48,8 @@ xnoremap <expr> <Plug>(SendToTerm)     SendToTerm()
 nnoremap <expr> <Plug>(SendToTerm)     SendToTerm()
 nnoremap <expr> <Plug>(SendToTermLine) SendToTerm() . '_'
 
-if !exists("g:sendtoterm_tab2space")
-	let g:sendtoterm_tab2space = 1
+if !exists("g:sendtoterm_expandtab")
+	let g:sendtoterm_expandtab = 1
 endif
 
 if !hasmapto('<Plug>(SendToTerm)') && maparg('<leader>t','n') ==# ''

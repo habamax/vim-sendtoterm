@@ -14,7 +14,7 @@ for another <CR>.
 
 SETTINGS                                                 *sendtoterm-settings*
 
-	let g:sendtoterm_tab2space = 0
+	let g:sendtoterm_expandtab = 0
 
 Convert tabs to spaces if true and 'expandtab' is false. Default is 1.
 
