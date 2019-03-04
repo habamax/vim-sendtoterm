@@ -33,8 +33,10 @@ fu! SendToTerm(...)
 		silent exe 'normal! `[v`]y'
 	endif
 
-
 	let text = substitute(@", '\n\|$', '\r', "g")
+	if !&expandtab && g:sendtoterm_expandtab
+		let text = substitute(text, '\t', repeat(' ', shiftwidth()), "g")
+	endif
 	call term_sendkeys(term_buffer+0, text)
 
 	let &selection = sel_save
@@ -45,6 +47,10 @@ endfu
 xnoremap <expr> <Plug>(SendToTerm)     SendToTerm()
 nnoremap <expr> <Plug>(SendToTerm)     SendToTerm()
 nnoremap <expr> <Plug>(SendToTermLine) SendToTerm() . '_'
+
+if !exists("g:sendtoterm_expandtab")
+	let g:sendtoterm_expandtab = 1
+endif
 
 if !hasmapto('<Plug>(SendToTerm)') && maparg('<leader>t','n') ==# ''
 	xmap <leader>t  <Plug>(SendToTerm)

@@ -12,6 +12,12 @@ python, elixir) and send text to it.
 NOTE: for a python interpreter it doens't work as I would like to -- it waits
 for another <CR>.
 
+SETTINGS                                                 *sendtoterm-settings*
+
+	let g:sendtoterm_expandtab = 0
+
+Convert tabs to spaces if true and 'expandtab' is false. Default is 1.
+
 MAPPINGS                                                 *sendtoterm-mappings*
 
 <leader>t                                               *sendtoterm-<leader>t*
