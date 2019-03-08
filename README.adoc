@@ -129,3 +129,23 @@ nmap <leader>r  <Plug>(SendToTerm)
 omap <leader>r  <Plug>(SendToTerm)
 nmap <leader>rr <Plug>(SendToTermLine)
 -------------
+
+What about `Ctrl-Enter` to send current line (probably would not work for all terminals)?
+
+.vimrc
+[source,vim]
+-------------
+nmap <C-CR> <Plug>(SendToTermLine)
+-------------
+
+What if I want my cursor to go to the next non-empty line after current line was sent to terminal?
+
+.vimrc
+[source,vim]
+-------------
+nmap <C-CR> <Plug>(SendToTermLine)j:call search('^\s*\S.*')<CR>
+-------------
+
+By default all tabs are converted to spaces and if you don't want it:
+
+	let g:sendtoterm_expandtab = 0

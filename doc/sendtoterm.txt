@@ -38,5 +38,14 @@ One can remap it to something else using following <Plug>s:
 	nmap <leader>rr <Plug>(SendToTermLine)
 
 
+What about `Ctrl-Enter` to send current line (probably would not work for all
+terminals)?
+
+	nmap <C-CR> <Plug>(SendToTermLine)
+
+What if I want my cursor to go to the next non-empty line after current line
+was sent to terminal?
+
+	nmap <C-CR> <Plug>(SendToTermLine)j:call search('^\s*\S.*')<CR>
 
 vim:tw=78:ts=4:ft=help:
