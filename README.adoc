@@ -143,7 +143,7 @@ What if I want my cursor to go to the next non-empty line after current line was
 .vimrc
 [source,vim]
 -------------
-nmap <C-CR> <Plug>(SendToTermLine)j:call search('^\s*\S.*')<CR>
+nmap <C-CR> <Plug>(SendToTermLine)j:call search('^\s*\S.*', 'W')<CR>
 -------------
 
 By default all tabs are converted to spaces and if you don't want it:

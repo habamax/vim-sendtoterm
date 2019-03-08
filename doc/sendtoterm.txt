@@ -46,6 +46,6 @@ terminals)?
 What if I want my cursor to go to the next non-empty line after current line
 was sent to terminal?
 
-	nmap <C-CR> <Plug>(SendToTermLine)j:call search('^\s*\S.*')<CR>
+	nmap <C-CR> <Plug>(SendToTermLine)j:call search('^\s*\S.*', 'W')<CR>
 
 vim:tw=78:ts=4:ft=help:
