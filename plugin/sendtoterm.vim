@@ -47,7 +47,7 @@ fu! SendToTerm(...)
 	if has('nvim')
 		exe term_window . "wincmd w"
 
-		let @" .= "\n"
+		let @" .= "\r"
 		normal! p
 
 		exe winnr('#') . "wincmd w"
