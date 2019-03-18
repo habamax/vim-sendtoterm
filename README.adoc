@@ -25,8 +25,6 @@ image::img_README_1.png[]
 
 image::https://github.com/habamax/habamax.github.io/blob/master/assets/gifs/vim-sendtoterm.gif[Send to term anigif]
 
-NOTE: Vim 8+ only.
-
 == Installation
 === minpac
 
