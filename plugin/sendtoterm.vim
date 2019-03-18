@@ -23,7 +23,7 @@ fu! SendToTerm(...)
 	if len(terms) > 1
 		let msg =  "Too many terminals open!"
 		for t in terms
-			let msg .= "\n\tTerm: ".t.winnr.' '.t.variables.netrw_prvfile
+			let msg .= "\n\t[".t.winnr.']: '.t.variables.netrw_prvfile
 		endfor
 		let msg .= "\nSelect terminal: "
 		let term_window = input(msg, terms[0].winnr)
