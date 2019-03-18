@@ -1,24 +1,35 @@
+fun! s:get_terminal_windows()
+	if has('nvim')
+		return map(filter(copy(getwininfo()), 'has_key(v:val.variables, "netrw_prvfile") && v:val.variables["netrw_prvfile"] =~ "^term://"'), 'v:val')
+	else
+		return map(filter(copy(getwininfo()), 'v:val.terminal'), 'v:val')
+	endif
+endfu
+
 fu! SendToTerm(...)
-	let terms = map(filter(copy(getwininfo()), 'v:val.terminal'), 'v:val')
+	let terms = s:get_terminal_windows()
 	if len(terms) < 1
 		echomsg "There is no visible terminal!"
 		return
-	endif
-
-	let term_buffer = terms[0].bufnr
-	if len(terms) > 1
-		let msg =  "Too many terminals open!"
-		for t in terms
-			let msg .= "\n\tTerm: ".t.bufnr.' '.t.variables.netrw_prvfile
-		endfor
-		let msg .= "\nSelect terminal: "
-		let term_buffer = input(msg, terms[0].bufnr)
 	endif
 
 	if !a:0
 		let &operatorfunc = matchstr(expand('<sfile>'), '[^. ]*$')
 		return 'g@'
 	endif
+
+
+	let term_window = terms[0].winnr
+	if len(terms) > 1
+		let msg =  "Too many terminals open!"
+		for t in terms
+			let msg .= "\n\tTerm: ".t.winnr.' '.t.variables.netrw_prvfile
+		endfor
+		let msg .= "\nSelect terminal: "
+		let term_window = input(msg, terms[0].winnr)
+	endif
+
+
 	let sel_save = &selection
 	let &selection = "inclusive"
 	let reg_save = @@
@@ -33,11 +44,20 @@ fu! SendToTerm(...)
 		silent exe 'normal! `[v`]y'
 	endif
 
-	let text = substitute(@", '\n\|$', '\r', "g")
-	if !&expandtab && g:sendtoterm_expandtab
-		let text = substitute(text, '\t', repeat(' ', shiftwidth()), "g")
+	if has('nvim')
+		exe term_window . "wincmd w"
+
+		let @" .= "\n"
+		normal! p
+
+		exe winnr('#') . "wincmd w"
+	else
+		let text = substitute(@", '\n\|$', '\r', "g")
+		if !&expandtab && g:sendtoterm_expandtab
+			let text = substitute(text, '\t', repeat(' ', shiftwidth()), "g")
+		endif
+		call term_sendkeys(winbufnr(term_window+0), text)
 	endif
-	call term_sendkeys(term_buffer+0, text)
 
 	let &selection = sel_save
 	let @@ = reg_save
