@@ -52,7 +52,7 @@ fu! SendToTerm(...)
 		else
 			let @" .= "\n"
 		endif
-		normal! p
+		normal! pG
 
 		exe winnr('#') . "wincmd w"
 	else
