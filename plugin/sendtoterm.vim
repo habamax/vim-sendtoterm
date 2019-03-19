@@ -1,9 +1,5 @@
 fun! s:get_terminal_windows()
-	if has('nvim')
-		return map(filter(copy(getwininfo()), 'has_key(v:val.variables, "netrw_prvfile") && v:val.variables["netrw_prvfile"] =~ "^term://"'), 'v:val')
-	else
-		return map(filter(copy(getwininfo()), 'v:val.terminal'), 'v:val')
-	endif
+	return map(filter(copy(getwininfo()), {k,v -> getbufvar(v.bufnr, '&buftype') == 'terminal'}), 'v:val')
 endfu
 
 fu! SendToTerm(...)
