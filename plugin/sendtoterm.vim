@@ -39,6 +39,7 @@ fu! SendToTerm(...)
 	else
 		silent exe 'normal! `[v`]y'
 	endif
+	silent exe 'normal! `]'
 
 	if has('nvim')
 		exe term_window . "wincmd w"
@@ -62,6 +63,7 @@ fu! SendToTerm(...)
 	let &selection = sel_save
 	let @@ = reg_save
 	let &clipboard = clipboard_save
+	silent exe 'call search(''^\s*\S.*'', ''W'')' 
 endfu
 
 xnoremap <expr> <Plug>(SendToTerm)     SendToTerm()
@@ -77,4 +79,5 @@ if !hasmapto('<Plug>(SendToTerm)') && maparg('<leader>t','n') ==# ''
 	nmap <leader>t  <Plug>(SendToTerm)
 	omap <leader>t  <Plug>(SendToTerm)
 	nmap <leader>tt <Plug>(SendToTermLine)
+  	nmap <leader>tq <c-w>wq<c-w>w
 endif
