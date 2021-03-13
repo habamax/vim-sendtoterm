@@ -1,5 +1,6 @@
 fun! s:get_terminal_windows()
-	return map(filter(copy(getwininfo()), {k,v -> getbufvar(v.bufnr, '&buftype') == 'terminal'}), 'v:val')
+	let cur_tabnr=tabpagenr()
+	return map(filter(copy(getwininfo()), {k,v -> v.terminal == 1&&v.tabnr==cur_tabnr}), 'v:val')
 endfu
 
 fu! SendToTerm(...)
@@ -81,3 +82,4 @@ if !hasmapto('<Plug>(SendToTerm)') && maparg('<leader>t','n') ==# ''
 	nmap <leader>tt <Plug>(SendToTermLine)
   	nmap <leader>tq <c-w>wq<c-w>w
 endif
+
